@@ -186,7 +186,7 @@ services:
        condition: service_healthy
      kibana:
        condition: service_healthy
-   image: docker.elastic.co/beats/metricbeat:8.7.1
+   image: docker.elastic.co/beats/metricbeat:8.12.2
    user: root
    volumes:
      - certs:/usr/share/metricbeat/certs
