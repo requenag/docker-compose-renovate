@@ -1,0 +1,50 @@
+---
+version: '3.7'
+services:
+  freeipa:
+    image: freeipa/freeipa-server:rocky-9
+    restart: unless-stopped
+    hostname: freeipa.emu.local.requena.fr
+    environment:
+      IPA_SERVER_HOSTNAME: freeipa.emu.local.requena.fr
+      TZ: "Etc/UTC"
+    tty: true
+    stdin_open: true
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      #- /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ./freeipa_data:/data
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.lo.disable_ipv6=0
+    security_opt:
+      - "seccomp:unconfined"
+    command:
+      - -U
+      - --domain=emu.local.requena.fr
+      - --realm=emu.local.requena.fr
+      - --http-pin=YOURPASSWORD
+      - --dirsrv-pin=YOURPASSWORDe
+      - --ds-password=YOURPASSWORD
+      - --admin-password=YOURPASSWORD
+      - --no-host-dns
+      - --unattended
+    ports:
+      - "80:80"
+      - "443:443"
+      - "389:389"
+      - "636:636"
+      - "88:88"
+      - "464:464"
+      - "88:88/udp"
+      - "464:464/udp"
+      - "123:123/udp"
+      - "7389:7389"
+      - "9443:9443"
+      - "9444:9444"
+      - "9445:9445"
+
+volumes:
+  freeipa_data:
