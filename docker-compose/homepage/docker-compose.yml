@@ -1,0 +1,17 @@
+---
+version: "3.3"
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:v0.8.4
+    container_name: homepage
+    #ports:
+    #  - 3000:3000
+    env_file: .env # use .env
+    volumes:
+      - ./homepage_data/config:/app/config # Make sure your local config directory exists
+      #- /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations, see alternative methods
+    #environment:
+    #  PUID: $PUID # read them from .env
+    #  PGID: $PGID # read them from .env
+    restart: unless-stopped
+
