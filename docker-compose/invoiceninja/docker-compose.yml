@@ -1,0 +1,30 @@
+version: '3.7'
+
+services: 
+  db:
+    container_name: db
+    image: mariadb:11.3.2
+    restart: always
+    networks:
+      - invoiceninja
+    env_file:
+      - .secrets/invoiceninja.env
+
+  invoiceninja:
+    container_name: invoiceninja
+    image: invoiceninja/invoiceninja:5.8
+    ports:
+      - 7777:9000
+    restart: always
+    volumes:
+      - ./invoiceninja/public:/var/app/public:rw,delegated
+      - ./invoiceninja/storage:/var/app/storage:rw,delegated
+    networks:
+      - invoiceninja
+    env_file:
+      - .secrets/invoiceninja.env
+    depends_on:
+      - db
+networks:
+  invoiceninja:
+
