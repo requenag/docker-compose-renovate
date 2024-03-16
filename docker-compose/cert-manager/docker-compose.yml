@@ -5,5 +5,5 @@ version: '2'
 
 services:
   cert-manager:
-    image: docker.io/bitnami/cert-manager:1.14.0
+    image: docker.io/bitnami/cert-manager:1.14.4
     container_name: cert-manager
