@@ -1,0 +1,71 @@
+---
+version: '3'
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${TTRSS_DB_USER}
+      - POSTGRES_PASSWORD=${TTRSS_DB_PASS}
+      - POSTGRES_DB=${TTRSS_DB_NAME}
+    volumes:
+      - ./ttrss_data/db:/var/lib/postgresql/data
+
+  app:
+    image: cthulhoo/ttrss-fpm-pgsql-static:f0f22c23
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - 9000:9000
+    volumes:
+      - ./ttrss_data/html:/var/www/html
+      - ./ttrss_data/config.d:/opt/tt-rss/config.d:ro
+    depends_on:
+      - db
+
+#  optional, makes weekly backups of your install
+#  backups:
+#    image: cthulhoo/ttrss-fpm-pgsql-static:f0f22c23
+#    restart: unless-stopped
+#    env_file:
+#      - .env
+#    volumes:
+#      - backups:/backups
+#      - app:/var/www/html
+#    depends_on:
+#      - db
+#    command: /opt/tt-rss/dcron.sh -f
+
+  updater:
+    image: cthulhoo/ttrss-fpm-pgsql-static:f0f22c23
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./ttrss_data/html:/var/www/html
+      - ./ttrss_data/config.d:/opt/tt-rss/config.d:ro
+    depends_on:
+      - app
+    command: /opt/tt-rss/updater.sh
+
+  web-nginx:
+    image: cthulhoo/ttrss-web-nginx:f0f22c23
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - ${HTTP_PORT}:80
+    volumes:
+      - ./ttrss_data/html:/var/www/html:ro
+    depends_on:
+      - app
+
+#volumes:
+#  db:
+#  app:
+#  backups:
+

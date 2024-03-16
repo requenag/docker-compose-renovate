@@ -1,0 +1,16 @@
+version: "3"
+services:
+  squid:
+    image: ubuntu/squid:5.2-22.04_beta
+    container_name: squid
+    mem_reservation: "1024M"
+    mem_limit: "1024M"
+    ports:
+      - "3128:3128"
+    environment:
+      - TZ=UTC
+    volumes:
+      - ./squid_data/logs:/var/log/squid
+      - ./squid_data/cache:/var/spool/squid
+      - ./squid_data/squid/squid.conf:/etc/squid/squid.conf
+    restart: unless-stopped

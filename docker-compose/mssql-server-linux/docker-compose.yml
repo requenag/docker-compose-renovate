@@ -1,0 +1,21 @@
+---
+version: '3.8'
+services:
+  mssql-server-linux:
+    image: mcr.microsoft.com/mssql/server:2022-CU11-ubuntu-22.04
+    container_name: mssql-server-linux
+    #ports:
+    #  - "1433:1433"
+    #environment:
+      #- MSSQL_SA_PASSWORD=<sql-server-admin-password>
+      #- ACCEPT_EULA=Y
+      #- MSSQL_DATA_DIR=/var/opt/sqlserver/data
+      #- MSSQL_LOG_DIR=/var/opt/sqlserver/log
+      #- MSSQL_BACKUP_DIR=/var/opt/sqlserver/backup
+    env_file: .env
+    volumes:
+      - ./mssql-server-linux_data/mssql:/var/opt/mssql/
+      - ./mssql-server-linux_data/data:/var/opt/sqlserver/data
+      - ./mssql-server-linux_data/log:/var/opt/sqlserver/log
+      - ./mssql-server-linux_data/backup:/var/opt/sqlserver/backup
+    restart: unless-stopped

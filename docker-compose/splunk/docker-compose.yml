@@ -1,0 +1,12 @@
+version: "3.6"
+
+services:
+  so1:
+    image: splunk/splunk:9.2
+    container_name: splunk
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      #- SPLUNK_PASSWORD #Set via .env
+    env_file: ./.env
+    ports:
+      - 8000:8000

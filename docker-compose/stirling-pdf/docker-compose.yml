@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  stirling-pdf:
+    image: frooodle/s-pdf:0.20.1-lite
+    container_name: s-pdf
+    #ports:
+    #  - '8080:8080'
+    volumes:
+      - ./s-pdf_data/tessdata:/usr/share/tesseract-ocr/4.00/tessdata #Required for extra OCR languages
+      - ./s-pdf_data/configs:/configs
+      - ./s-pdf_data/customFiles:/customFiles
+#    environment:
+#      APP_LOCALE: en_GB
+#      APP_HOME_NAME: Stirling PDF
+#      APP_HOME_DESCRIPTION: Your locally hosted one-stop-shop for all your PDF needs.
+#      APP_NAVBAR_NAME: Stirling PDF
+#      APP_ROOT_PATH: /
+#      ALLOW_GOOGLE_VISIBILITY: true

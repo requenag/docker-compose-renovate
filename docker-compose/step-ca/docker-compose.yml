@@ -1,0 +1,20 @@
+version: '3.2'
+
+services:
+  step-ca:
+    image: smallstep/step-ca:0.25.2
+    volumes:
+      - ./step-ca_data/step:/home/step
+    #ports:
+    #  - "9000:9000"
+    environment:
+    - DOCKER_STEPCA_INIT_NAME="Smallstep"
+    - DOCKER_STEPCA_INIT_DNS_NAMES="localhost"
+    - DOCKER_STEPCA_INIT_REMOTE_MANAGEMENT=true
+    - DOCKER_STEPCA_INIT_PASSWORD="PasswordABC123"
+#    healthcheck:
+#      test: [ "CMD", "curl", "-k", "https://localhost:8443/health" ]
+#      timeout: 30s
+#      interval: 10s
+#      retries: 6
+    restart: unless-stopped

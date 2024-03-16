@@ -1,0 +1,7 @@
+version: "3"
+services:
+  ubuntu:
+    container_name: ubuntu:20.04
+    image: ubuntu20.04
+    restart: on-failure
+    command: "/bin/bash"

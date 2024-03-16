@@ -1,0 +1,18 @@
+---
+version: "2.1"
+services:
+  rutorrent:
+    image: ghcr.io/linuxserver/rutorrent:v3.10-ls122
+    container_name: rutorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./rutorrent_data/config:/config
+      - ./rutorrent_data/downloads:/downloads
+    ports:
+      - 8089:80
+      - 5000:5000
+      - 51413:51413
+      - 6881:6881/udp
+    restart: unless-stopped

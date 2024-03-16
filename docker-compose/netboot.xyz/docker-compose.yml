@@ -1,0 +1,21 @@
+---
+version: "2.1"
+services:
+  netbootxyz:
+    image: netbootxyz/netbootxyz:0.7.0-nbxyz2
+    container_name: netbootxyz
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      #- MENU_VERSION=2.0.47 # optional
+    env_file: .env
+    volumes:
+      - ./netboot.xyz_data/config:/config # optional
+      - ./netboot.xyz_data/assets:/assets # optional
+      - ./netboot.xyz_data/config/menus:/var/tftp:ro # optional
+    ports:
+    # - ${NETBOOTXYZ_MGT_IP}:3000:3000
+     - ${NETBOOTXYZ_INSTALL_IP}:69:69/udp
+     - ${NETBOOTXYZ_INSTALL_IP}:80:80 #optional
+    #network_mode: host
+    restart: unless-stopped

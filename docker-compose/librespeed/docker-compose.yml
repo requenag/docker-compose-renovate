@@ -1,0 +1,27 @@
+---
+version: "2"
+services:
+  librespeed:
+    image: linuxserver/librespeed:5.3.0
+    container_name: librespeed
+    #ports:
+      #- 8086:80
+    environment:
+      - MODE=standalone
+      - TELEMETRY=true
+      #- PASSWORD=C0FquKKTpc8%mZTv
+      #- PUID=1000
+      #- PGID=1000
+      - TZ=Etc/UTC
+      #- PASSWORD=PASSWORD
+      - CUSTOM_RESULTS=false #optional
+      - DB_TYPE=sqlite #optional
+      #- DB_NAME=DB_NAME #optional
+      #- DB_HOSTNAME=DB_HOSTNAME #optional
+      #- DB_USERNAME=DB_USERNAME #optional
+      #- DB_PASSWORD=DB_PASSWORD #optional
+      #- DB_PORT=DB_PORT #optional
+      #- IPINFO_APIKEY=ACCESS_TOKEN #optional
+    volumes:
+      - ./librespeed_data/config:/config
+    restart: unless-stopped

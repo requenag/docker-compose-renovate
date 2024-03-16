@@ -1,0 +1,11 @@
+---
+services:
+  renovate:
+    image: renovate/renovate:37.168.2
+    volumes:
+      - ./renovate_data/config.js:/usr/src/app/config.js
+      - /tmp:/tmp
+    environment:
+      - LOG_LEVEL=debug
+    command: --include-forks=true renovate-tests/gomod1
+

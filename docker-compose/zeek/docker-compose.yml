@@ -1,0 +1,17 @@
+version: "2.1"
+services:
+  zeek:
+    image: zeek/zeek:6.1
+    container_name: zeek
+    security_opt:
+     - no-new-privileges:true
+    volumes:
+      - ./zeek_data/data:/data # EXAMPLE ONLY
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    #ports:
+      #- 8081:80
+      #- 8843:443
+    restart: unless-stopped

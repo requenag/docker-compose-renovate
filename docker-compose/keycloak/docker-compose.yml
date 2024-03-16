@@ -1,0 +1,30 @@
+---
+version: '2'
+services:
+  keycloak_db:
+    image: docker.io/bitnami/postgresql:16.1.0
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRESQL_USERNAME=bn_keycloak
+      - POSTGRESQL_DATABASE=bitnami_keycloak
+    volumes:
+      - postgresql_data:/bitnami/postgresql'
+    restart: unless-stopped
+    networks:
+      - internal
+
+  keycloak_app:
+    image: docker.io/bitnami/keycloak:23.0.4
+    #ports:
+    #  - "80:8080"
+    environment:
+      - KEYCLOAK_CREATE_ADMIN_USER=true
+    depends_on:
+      - keycloak_db
+    volumes:
+      - ./keycloak_data/keycloak/themes/mynewtheme:/opt/bitnami/keycloak/themes/mynewtheme'
+    restart: unless-stopped
+
+volumes:
+  postgresql_data:
+    driver: local

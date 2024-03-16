@@ -1,0 +1,29 @@
+---
+version: "3"
+services:
+  wireguard-ui:
+    image: ngoduykhanh/wireguard-ui:0.6.2
+    container_name: wireguard-ui
+    #cap_add:
+    #  - NET_ADMIN
+    #network_mode: host
+    #environment:
+    #  - SENDGRID_API_KEY
+    #  - EMAIL_FROM_ADDRESS
+    #  - EMAIL_FROM_NAME
+    #  - SESSION_SECRET
+    #  - WGUI_USERNAME=alpha
+    #  - WGUI_PASSWORD=this-unusual-password
+    #  - WG_CONF_TEMPLATE
+    #  - WGUI_MANAGE_START=false
+    #  - WGUI_MANAGE_RESTART=false
+    env_file:  #only necessary if you want to change the password, see .env file
+      - .env
+    #logging:
+    #  driver: json-file
+    #  options:
+    #    max-size: 50m
+    volumes:
+      - ./wireguard-ui_data/db:/app/db
+      - /etc/wireguard:/etc/wireguard
+    restart: unless-stopped

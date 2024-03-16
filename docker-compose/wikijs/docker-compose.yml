@@ -1,0 +1,22 @@
+---
+version: "2.1"
+services:
+  wikijs:
+    image: lscr.io/linuxserver/wikijs:2.5.301
+    container_name: wikijs
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - DB_TYPE=sqlite #optional
+      - DB_HOST= #optional
+      - DB_PORT= #optional
+      - DB_NAME= #optional
+      - DB_USER= #optional
+      - DB_PASS= #optional
+    volumes:
+      - ./wikijs_data/config:/config
+      - ./wikijs_data/data:/data
+    #ports:
+    #  - 3000:3000
+    restart: unless-stopped
