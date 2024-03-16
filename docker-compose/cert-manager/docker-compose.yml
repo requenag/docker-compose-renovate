@@ -1,0 +1,9 @@
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
+
+version: '2'
+
+services:
+  cert-manager:
+    image: docker.io/bitnami/cert-manager:1.14.0
+    container_name: cert-manager

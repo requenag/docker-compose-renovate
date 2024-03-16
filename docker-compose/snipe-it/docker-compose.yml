@@ -1,0 +1,42 @@
+---
+version: "2.1"
+services:
+  snipe-it_db:
+    image: mariadb:10.6
+    container_name: snipe-it_db
+    restart: always
+    command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
+    volumes:
+      - ./snipe-it_data/db/mysql:/var/lib/mysql
+    #environment:
+      #- MYSQL_ROOT_PASSWORD=changeme
+      #- MYSQL_PASSWORD=changeme
+      #- MYSQL_DATABASE=snipe-it
+      #- MYSQL_USER=snipe-it
+    env_file:
+      - .env
+    networks:
+      - internal
+
+  snipe-it_core:
+    image: lscr.io/linuxserver/snipe-it:6.2.3
+    container_name: snipe-it_core
+    links:
+      - snipe-it_db
+    #environment:
+      #- PUID=1000
+      #- PGID=1000
+      #- TZ=Etc/UTC
+      #- APP_URL=
+      #- MYSQL_PORT_3306_TCP_ADDR=
+      #- MYSQL_PORT_3306_TCP_PORT=
+      #- MYSQL_DATABASE=
+      #- MYSQL_USER=
+      #- MYSQL_PASSWORD=
+    env_file:
+      - .env
+    volumes:
+      - ./snipe-it_data/config:/config
+    #ports:
+    #  - 2080:80
+    restart: unless-stopped
