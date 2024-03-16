@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  jellyfin:
+    image: linuxserver/jellyfin:10.8.13
+    container_name: jellyfin
+    #user: uid:guid
+    #network_mode: 'host'
+    volumes:
+      - ./jellyfin_data/config:/config
+      - ./jellyfin_data/cache:/cache
+      - ./jellyfin_data/media:/media
+        #- /path/to/media2:/media2:ro
+    ports:
+      - 8096:8096
+      - 8081:80
+      - 8843:443
+    restart: unless-stopped
+    # Optional - alternative address used for autodiscovery
+    #environment:
+    #  - UID=1
+    #  - GID=1
+    #  - JELLYFIN_PublishedServerUrl=http://example.com
+    # Optional - may be necessary for docker healthcheck to pass if running in host network mode
+    #extra_hosts:
+    #  - "host.docker.internal:host-gateway"

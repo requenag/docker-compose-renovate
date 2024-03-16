@@ -1,0 +1,19 @@
+version: "3"
+services:
+  http-echo:
+    image: hashicorp/http-echo:1.0
+    container_name: http-echo
+    security_opt:
+     - no-new-privileges:true
+    #environment:
+    #  - PUID=1000
+    #  - PGID=1000
+    #  - TZ=Etc/UTC
+    env_file:
+      - .env
+    #ports:
+      #- 5678:5678
+    restart: unless-stopped
+    networks:
+      - internal
+    command: -text="hello world from $HOSTNAME"

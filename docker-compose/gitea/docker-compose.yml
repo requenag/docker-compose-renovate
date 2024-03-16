@@ -1,0 +1,17 @@
+---
+version: "3"
+services:
+  gitea:
+    image: gitea/gitea:1.21
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    volumes:
+      - ./gitea_data/data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    #ports:
+    #  - "3000:3000"
+    #  - "222:22"
+    restart: unless-stopped
