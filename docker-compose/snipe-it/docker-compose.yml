@@ -19,7 +19,7 @@ services:
       - internal
 
   snipe-it_core:
-    image: lscr.io/linuxserver/snipe-it:6.2.3
+    image: lscr.io/linuxserver/snipe-it:6.3.3
     container_name: snipe-it_core
     links:
       - snipe-it_db
