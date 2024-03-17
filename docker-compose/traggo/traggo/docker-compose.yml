@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   traggo:
-    image: traggo/server:0.3.0
+    image: traggo/server:0.4.3
     container_name: traggo
     #ports:
     #  - 3030:3030
