@@ -2,7 +2,7 @@ version: '3'
 services:
   # ElastiFlow Unified Flow Collector
   flow-collector:
-    image: elastiflow/flow-collector:6.4.2
+    image: elastiflow/flow-collector:6.4.3
     container_name: flow-collector
     restart: 'unless-stopped'
     network_mode: 'host'
