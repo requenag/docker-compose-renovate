@@ -1,7 +1,7 @@
 ---
 services:
   renovate:
-    image: renovate/renovate:37.264.0
+    image: renovate/renovate:37.265.0
     volumes:
       - ./renovate_data/config.js:/usr/src/app/config.js
       - /tmp:/tmp
