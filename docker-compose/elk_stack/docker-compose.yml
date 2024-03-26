@@ -24,7 +24,7 @@ volumes:
 ## Service definition
 services:
  setup: # Note: Setup is only used to configure certs
-   image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
+   image: docker.elastic.co/elasticsearch/elasticsearch:8.13.0
    volumes:
      - certs:/usr/share/elasticsearch/config/certs
    user: "0"
@@ -83,7 +83,7 @@ services:
    depends_on:
      setup:
        condition: service_healthy
-   image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
+   image: docker.elastic.co/elasticsearch/elasticsearch:8.13.0
    labels:
      co.elastic.logs/module: elasticsearch
    volumes:
