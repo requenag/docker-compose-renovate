@@ -163,7 +163,7 @@ services:
        condition: service_healthy
      kibana:
        condition: service_healthy
-   image: docker.elastic.co/logstash/logstash:8.12.2
+   image: docker.elastic.co/logstash/logstash:8.13.0
    labels:
      co.elastic.logs/module: logstash
    user: root
