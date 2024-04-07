@@ -1,6 +1,6 @@
 services:
   jekyll:
-    image: jekyll/jekyll:4
+    image: jekyll/jekyll:4.2.2
     volumes:
       - ./jekyll_data/data:/srv/jekyll
       - ./jekyll_data/bundle/:/usr/local/bundle
