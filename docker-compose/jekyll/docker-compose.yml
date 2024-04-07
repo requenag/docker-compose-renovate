@@ -1,0 +1,10 @@
+services:
+  jekyll:
+    image: jekyll/jekyll:4
+    volumes:
+      - ./jekyll_data/data:/srv/jekyll
+      - ./jekyll_data/bundle/:/usr/local/bundle
+    ports:
+      - "4000:4000"
+    command: jekyll serve --force_polling --drafts
+
