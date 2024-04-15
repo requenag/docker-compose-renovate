@@ -5,7 +5,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    image: docuseal/docuseal:1.5.1
+    image: docuseal/docuseal:1.5.2
     ports:
       - 3000:3000
     volumes:
