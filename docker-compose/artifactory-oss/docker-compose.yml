@@ -1,7 +1,7 @@
 version: '3'
 services:
   artifactory:
-    image: docker.bintray.io/jfrog/artifactory-oss:7.77.8
+    image: docker.bintray.io/jfrog/artifactory-oss:7.77.9
     container_name: artifactory
     user: "${UID}:${GID}"
     #ports:
