@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   telegraf:
-    image: telegraf:1.30.1
+    image: telegraf:1.30.2
     container_name: telegraf
     volumes:
     #- ./telegraf_data/config/telegraf-vmware.conf:/etc/telegraf/telegraf.conf:ro
