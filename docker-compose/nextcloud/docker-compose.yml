@@ -17,7 +17,7 @@ services:
       - internal
 
   nextcloud_app:
-    image: nextcloud:28.0.4
+    image: nextcloud:29.0.0
     container_name: nextcloud_app
     restart: always
     #ports:
