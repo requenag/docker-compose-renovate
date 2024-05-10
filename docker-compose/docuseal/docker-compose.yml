@@ -15,7 +15,7 @@ services:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
 
   postgres:
-    image: postgres:15
+    image: postgres:16
     volumes:
       - './pg_data:/var/lib/postgresql/data'
     environment:
