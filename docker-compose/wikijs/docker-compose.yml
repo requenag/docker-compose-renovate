@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   wikijs:
-    image: lscr.io/linuxserver/wikijs:2.5.301
+    image: lscr.io/linuxserver/wikijs:2.5.303
     container_name: wikijs
     environment:
       - PUID=1000

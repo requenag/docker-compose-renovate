@@ -5,7 +5,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    image: docuseal/docuseal:1.5.3
+    image: docuseal/docuseal:1.5.8
     ports:
       - 3000:3000
     volumes:
@@ -15,7 +15,7 @@ services:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
 
   postgres:
-    image: postgres:15
+    image: postgres:16
     volumes:
       - './pg_data:/var/lib/postgresql/data'
     environment:
@@ -29,7 +29,7 @@ services:
       retries: 5
 
   caddy:
-    image: caddy:2.7.6
+    image: caddy:2.8.0
     command: caddy reverse-proxy --from $HOST --to app:3000
     ports:
       - 80:80

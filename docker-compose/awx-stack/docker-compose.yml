@@ -2,7 +2,7 @@ version: '2'
 services:
 
   web:
-    image: ansible/awx:13.0.0
+    image: ansible/awx:17.1.0
     container_name: awx_web
     depends_on:
       - redis
@@ -29,7 +29,7 @@ services:
       no_proxy: 
 
   task:
-    image: ansible/awx:13.0.0
+    image: ansible/awx:17.1.0
     container_name: awx_task
     depends_on:
       - redis
@@ -69,7 +69,7 @@ services:
       - "~/.awx/redis_socket:/var/run/redis/:rw"
 
   postgres:
-    image: postgres:10
+    image: postgres:16
     container_name: awx_postgres
     restart: unless-stopped
     command: postgres -c listen_addresses='*'
@@ -85,7 +85,7 @@ services:
       no_proxy: 
 
   metricbeat:
-    image: docker.elastic.co/beats/metricbeat:7.17.20
+    image: docker.elastic.co/beats/metricbeat:7.17.21
     user: root
     restart: unless-stopped
     environment:

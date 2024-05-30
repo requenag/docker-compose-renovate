@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   ngnix-reverse-proxy:
-    image: jc21/nginx-proxy-manager:2.11.1
+    image: jc21/nginx-proxy-manager:2.11.2
     container_name: nginx-proxy-manager
     restart: unless-stopped
     ports:

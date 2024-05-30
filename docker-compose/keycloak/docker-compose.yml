@@ -14,7 +14,7 @@ services:
       - internal
 
   keycloak_app:
-    image: docker.io/bitnami/keycloak:23.0.7
+    image: docker.io/bitnami/keycloak:24.0.4
     #ports:
     #  - "80:8080"
     environment:
