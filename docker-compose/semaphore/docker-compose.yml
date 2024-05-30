@@ -2,7 +2,7 @@ services:
   semaphore:
     ports:
       - 3000:3000
-    image: semaphoreui/semaphore:v2.9.70
+    image: semaphoreui/semaphore:2.9.109
     environment:
       SEMAPHORE_DB_DIALECT: bolt
       SEMAPHORE_ADMIN_PASSWORD: changeme
