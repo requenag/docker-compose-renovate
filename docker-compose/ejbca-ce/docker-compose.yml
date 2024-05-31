@@ -7,7 +7,7 @@ networks:
 services:
   ejbca-db:
     container_name: ejbca-db
-    image: "library/mariadb:11.3.2"
+    image: "library/mariadb:11.4.2"
     networks:
       - application-bridge
     environment:
