@@ -1,12 +1,8 @@
 version: '3'
-
 services:
 # MongoDB: https://hub.docker.com/_/mongo/
   mongodb:
-    image: "mongo:6.0.14"
-    volumes:
-      - "./mongodb_data:/data/db"
-    restart: "on-failure"
+    image: mongo:6.0.14
     networks:
       - graylog
 
@@ -35,47 +31,36 @@ services:
 
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
-    hostname: "server"
-    image: "graylog/graylog-enterprise:6.0.0"
-    # To install Graylog Open: "graylog/graylog:6.0.0"
+    image: graylog/graylog:5.2
+    environment:
+    - GRAYLOG_NODE_ID_FILE=/usr/share/graylog/data/config/node-id
+    - GRAYLOG_HTTP_BIND_ADDRESS=0.0.0.0:9000
+    - GRAYLOG_ELASTICSEARCH_HOSTS=http://opensearch:9200
+    - GRAYLOG_MONGODB_URI=mongodb://mongodb:27017/graylog
+    # CHANGE ME (must be at least 16 characters)!
+    - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
+    # Password: admin
+    - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+    - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
+    entrypoint: /usr/bin/tini -- wait-for-it elasticsearch:9200 --  /docker-entrypoint.sh
+    networks:
+      - graylog
+    restart: always
     depends_on:
       - mongodb
       - opensearch
-    entrypoint: "/usr/bin/tini -- wait-for-it elasticsearch:9200 --  /docker-entrypoint.sh"
-    environment:
-    - GRAYLOG_NODE_ID_FILE= "/usr/share/graylog/data/config/node-id"
-    - GRAYLOG_HTTP_BIND_ADDRESS= "0.0.0.0:9000"
-    - GRAYLOG_ELASTICSEARCH_HOSTS= http://opensearch:9200
-    - GRAYLOG_MONGODB_URI= "mongodb://mongodb:27017/graylog"
-    # To make reporting (headless_shell) work inside a Docker container
-    - GRAYLOG_REPORT_DISABLE_SANDBOX= "true"
-    # CHANGE ME (must be at least 16 characters)!
-    - GRAYLOG_PASSWORD_SECRET= "somepasswordpepper"
-    # Password: "admin"
-    - GRAYLOG_ROOT_PASSWORD_SHA2= "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
-    - GRAYLOG_HTTP_EXTERNAL_URI= http://127.0.0.1:9000/
     ports:
       # Graylog web interface and REST API
-      - "9000:9000/tcp"
-      # Beats
-      - "5044:5044/tcp"
+      - 9000:9000
       # Syslog TCP
-      - "5140:5140/tcp"
+      - 1514:1514
       # Syslog UDP
-      - "5140:5140/udp"
+      - 1514:1514/udp
       # GELF TCP
-      - "12201:12201/tcp"
+      - 12201:12201
       # GELF UDP
-      - "12201:12201/udp"
-      # Forwarder data
-      - "13301:13301/tcp"
-      # Forwarder config
-      - "13302:13302/tcp"
-    volumes:
-        - "./graylog_data:/usr/share/graylog/data/data"
-        - "./graylog_journal:/usr/share/graylog/data/journal"
-    restart: "on-failure"
+      - 12201:12201/udp
 
 networks:
   graylog:
-    driver: "bridge"
+    driver: bridge
