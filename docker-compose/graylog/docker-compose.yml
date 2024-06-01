@@ -5,7 +5,7 @@ services:
   mongodb:
     image: "mongo:6.0.14"
     volumes:
-      - "mongodb_data:/data/db"
+      - "./mongodb_data:/data/db"
     restart: "on-failure"
     networks:
       - graylog
@@ -39,8 +39,7 @@ services:
     image: "graylog/graylog-enterprise:6.0.0"
     # To install Graylog Open: "graylog/graylog:6.0.0"
     depends_on:
-      - mongodb:
-          condition: "service_started"
+      - mongodb
       - opensearch
     entrypoint: "/usr/bin/tini -- wait-for-it elasticsearch:9200 --  /docker-entrypoint.sh"
     environment:
@@ -49,7 +48,7 @@ services:
     - GRAYLOG_ELASTICSEARCH_HOSTS= http://opensearch:9200
     - GRAYLOG_MONGODB_URI= "mongodb://mongodb:27017/graylog"
     # To make reporting (headless_shell) work inside a Docker container
-    - GRAYLOG_REPORT_DISABLE_SANDBOX: "true"
+    - GRAYLOG_REPORT_DISABLE_SANDBOX= "true"
     # CHANGE ME (must be at least 16 characters)!
     - GRAYLOG_PASSWORD_SECRET= "somepasswordpepper"
     # Password: "admin"
@@ -72,10 +71,10 @@ services:
       - "13301:13301/tcp"
       # Forwarder config
       - "13302:13302/tcp"
-      volumes:
-          - "graylog_data:/usr/share/graylog/data/data"
-          - "graylog_journal:/usr/share/graylog/data/journal"
-      restart: "on-failure"
+    volumes:
+        - "./graylog_data:/usr/share/graylog/data/data"
+        - "./graylog_journal:/usr/share/graylog/data/journal"
+    restart: "on-failure"
 
 networks:
   graylog:
