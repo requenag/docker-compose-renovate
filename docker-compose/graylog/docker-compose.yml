@@ -11,7 +11,7 @@ services:
       - graylog
 
   opensearch:
-    image: "opensearchproject/opensearch:2.12.0"
+    image: "opensearchproject/opensearch:2.14.0"
     environment:
       - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
       - "bootstrap.memory_lock=true"
