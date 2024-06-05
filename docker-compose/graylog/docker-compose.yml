@@ -36,7 +36,7 @@ services:
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
     hostname: "server"
-    image: "graylog/graylog-enterprise:6.0.2"
+    image: "graylog/graylog-enterprise:6.0.3"
     # To install Graylog Open: "graylog/graylog:6.0.0"
     depends_on:
       - mongodb
