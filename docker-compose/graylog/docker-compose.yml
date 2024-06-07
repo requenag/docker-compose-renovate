@@ -2,12 +2,19 @@ version: '3'
 services:
 # MongoDB: https://hub.docker.com/_/mongo/
   mongodb:
+<<<<<<< HEAD
     image: mongo:6.0.14
+=======
+    image: "mongo:6.0.15"
+    volumes:
+      - "./mongodb_data:/data/db"
+    restart: "on-failure"
+>>>>>>> c04c8ce7719f2680a1a3cad136d9c208ee753b2c
     networks:
       - graylog
 
   opensearch:
-    image: "opensearchproject/opensearch:2.12.0"
+    image: "opensearchproject/opensearch:2.14.0"
     environment:
       - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
       - "bootstrap.memory_lock=true"
@@ -31,6 +38,7 @@ services:
 
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
+<<<<<<< HEAD
     image: graylog/graylog:5.2
     environment:
     - GRAYLOG_NODE_ID_FILE=/usr/share/graylog/data/config/node-id
@@ -46,6 +54,11 @@ services:
     networks:
       - graylog
     restart: always
+=======
+    hostname: "server"
+    image: "graylog/graylog-enterprise:6.0.3"
+    # To install Graylog Open: "graylog/graylog:6.0.0"
+>>>>>>> c04c8ce7719f2680a1a3cad136d9c208ee753b2c
     depends_on:
       - mongodb
       - opensearch

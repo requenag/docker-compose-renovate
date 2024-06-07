@@ -16,7 +16,7 @@ version: '3.1'
 services:
 
   drupal:
-    image: drupal:10.2.6-php8.3-fpm-alpine3.19
+    image: drupal:10.2.7-php8.3-fpm-alpine3.19
     #ports:
     #  - 8080:80
     volumes:
