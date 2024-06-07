@@ -2,14 +2,10 @@ version: '3'
 services:
 # MongoDB: https://hub.docker.com/_/mongo/
   mongodb:
-<<<<<<< HEAD
     image: mongo:6.0.14
-=======
-    image: "mongo:6.0.15"
     volumes:
       - "./mongodb_data:/data/db"
     restart: "on-failure"
->>>>>>> c04c8ce7719f2680a1a3cad136d9c208ee753b2c
     networks:
       - graylog
 
