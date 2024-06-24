@@ -12,7 +12,7 @@ services:
 
   invoiceninja:
     container_name: invoiceninja
-    image: invoiceninja/invoiceninja:5.9
+    image: invoiceninja/invoiceninja:5.10
     ports:
       - 7777:9000
     restart: always
