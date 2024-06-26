@@ -19,7 +19,7 @@ services:
       - ./datadbdir:/var/lib/mysql:rw
   ejbca:
     container_name: ejbca
-    image: keyfactor/ejbca-ce:8.3.1
+    image: keyfactor/ejbca-ce:8.3.2
     depends_on:
       - ejbca-db
     networks:
