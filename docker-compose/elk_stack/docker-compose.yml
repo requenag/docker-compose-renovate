@@ -208,7 +208,7 @@ services:
    depends_on:
      es01:
        condition: service_healthy
-   image: docker.elastic.co/beats/filebeat:8.14.2
+   image: docker.elastic.co/beats/filebeat:8.14.3
    user: root
    volumes:
      - certs:/usr/share/filebeat/certs
