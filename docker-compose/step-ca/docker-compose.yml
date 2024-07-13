@@ -2,7 +2,7 @@ version: '3.2'
 
 services:
   step-ca:
-    image: smallstep/step-ca:0.27.0
+    image: smallstep/step-ca:0.27.1
     volumes:
       - ./step-ca_data/step:/home/step
     #ports:
