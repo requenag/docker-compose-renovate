@@ -2,7 +2,7 @@ version: '3'
 
 services:
   sphinx:
-    image: sphinxdoc/sphinx:7.3.7
+    image: sphinxdoc/sphinx:7.4.4
     container_name: sphinx
     volumes:
       - ./sphinx_data/docs:/docs
