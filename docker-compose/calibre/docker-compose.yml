@@ -1,7 +1,7 @@
 ---
 services:
   calibre:
-    image: lscr.io/linuxserver/calibre:7.14.0
+    image: lscr.io/linuxserver/calibre:7.15.0
     container_name: calibre
     security_opt:
       - seccomp:unconfined #optional
