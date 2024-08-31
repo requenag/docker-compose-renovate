@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  gotify:
+    image: gotify/server:2.5.0
+    ports:
+      - 8080:80
+    environment:
+      - GOTIFY_DEFAULTUSER_PASS=custom
+    volumes:
+      - "./gotify_data:/app/data"
