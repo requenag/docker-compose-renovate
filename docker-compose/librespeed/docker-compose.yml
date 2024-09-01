@@ -2,7 +2,7 @@
 version: "2"
 services:
   librespeed:
-    image: linuxserver/librespeed:5.3.3
+    image: linuxserver/librespeed:5.4.20240804
     container_name: librespeed
     #ports:
       #- 8086:80
