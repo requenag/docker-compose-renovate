@@ -128,7 +128,7 @@ services:
    depends_on:
       es01:
         condition: service_healthy
-   image: docker.elastic.co/kibana/kibana:8.14.3
+   image: docker.elastic.co/kibana/kibana:8.15.0
    labels:
      co.elastic.logs/module: kibana
    volumes:
