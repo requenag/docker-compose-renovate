@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   hedgedoc:
-    image: lscr.io/linuxserver/hedgedoc:1.9.9
+    image: lscr.io/linuxserver/hedgedoc:1.10.0
     container_name: hedgedoc
     environment:
       - PUID=1000
