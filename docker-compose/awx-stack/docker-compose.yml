@@ -85,7 +85,7 @@ services:
       no_proxy: 
 
   metricbeat:
-    image: docker.elastic.co/beats/metricbeat:7.17.23
+    image: docker.elastic.co/beats/metricbeat:7.17.24
     user: root
     restart: unless-stopped
     environment:
