@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+  odoo:
+    image: odoo:17.0
+    depends_on:
+      - mydb
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoo_data-latest:/var/lib/odoo
+      - /etc/odoo/odoo.conf:/etc/odoo/odoo.conf
+      - /mnt/custom_addons/ahson_pk:/mnt/custom_addons/ahson_pk
+    environment:
+      - HOST=mydb
+      - USER=odoo
+      - PASSWORD=myodoo
+  mydb:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=myodoo
+      - POSTGRES_USER=odoo
+    volumes:
+      - db_data_16:/var/lib/postgresql/data
+
+volumes:
+  odoo_data-latest:
+  db_data_16:
