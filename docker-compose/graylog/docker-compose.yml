@@ -34,7 +34,6 @@ services:
 
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
-<<<<<<< HEAD
     image: graylog/graylog:5.2
     environment:
     - GRAYLOG_NODE_ID_FILE=/usr/share/graylog/data/config/node-id
@@ -50,11 +49,8 @@ services:
     networks:
       - graylog
     restart: always
-=======
     hostname: "server"
-    image: "graylog/graylog-enterprise:6.0.3"
     # To install Graylog Open: "graylog/graylog:6.0.0"
->>>>>>> c04c8ce7719f2680a1a3cad136d9c208ee753b2c
     depends_on:
       - mongodb
       - opensearch
