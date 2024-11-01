@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  alloydb:
+    image: google/alloydbomni:15.5.5
+    environment:
+      - POSTGRES_USER=${ALLOYDB_USER}
+      - POSTGRES_PASSWORD=${ALLOYDB_PASSWORD}
+      - POSTGRES_DB=${ALLOYDB_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - alloydb_data:/var/lib/postgresql/data
+
+volumes:
+  alloydb_data:
