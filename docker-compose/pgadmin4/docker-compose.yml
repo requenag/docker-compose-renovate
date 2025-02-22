@@ -1,7 +1,7 @@
 services:
   pgadmin:
     container_name: pgadmin4
-    image: elestio/pgadmin:REL-8_5
+    image: dpage/pgadmin4:8.13.0
     #environment:
     #  - PGADMIN_DEFAULT_EMAIL=${PGADMIN_MAIL}
     #  - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PW}
