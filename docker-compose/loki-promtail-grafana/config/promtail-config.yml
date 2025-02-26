@@ -1,0 +1,67 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://rl9-mon-01.lab.requena.fr:3100/loki/api/v1/push
+
+scrape_configs:
+- job_name: system_cron
+  static_configs:
+  - targets:
+      -
+    labels:
+      job: cronlogs
+      __path__: /var/log/cron
+
+- job_name: system_audit
+  static_configs:
+  - targets:
+      - rl9-mon-01.lab.requena.fr
+    labels:
+      job: auditlog
+      __path__: /var/log/audit/audit.log
+
+- job_name: system_dnf
+  static_configs:
+  - targets:
+      - rl9-mon-01.lab.requena.fr
+    labels:
+      job: dnflog
+      __path__: /var/log/dnf.log
+
+- job_name: system_maillog
+  static_configs:
+  - targets:
+      - rl9-mon-01.lab.requena.fr
+    labels:
+      job: maillog
+      __path__: /var/log/maillog
+
+- job_name: system_secure
+  static_configs:
+  - targets:
+      - rl9-mon-01.lab.requena.fr
+    labels:
+      job: securelog
+      __path__: /var/log/secure
+
+- job_name: system_sssd
+  static_configs:
+  - targets:
+      - rl9-mon-01.lab.requena.fr
+    labels:
+      job: sssdlog
+      __path__: /var/log/sssd/*.log
+
+- job_name: system_messages
+  static_configs:
+  - targets:
+      - rl9-mon-01.lab.requena.fr
+    labels:
+      job: messages
+      __path__: /var/log/messages
+
