@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   speedtest:
-    image: openspeedtest/latest:v2.0.5
+    image: openspeedtest/latest:v2.0.6
     container_name: openspeedtest
     #ports:
     #  - '3000:3000'
