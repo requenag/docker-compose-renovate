@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   airsonic-advanced:
-    image: lscr.io/linuxserver/airsonic-advanced:11.0.0
+    image: lscr.io/linuxserver/airsonic-advanced:11.1.4
     container_name: airsonic-advanced
     environment:
       - PUID=1000
