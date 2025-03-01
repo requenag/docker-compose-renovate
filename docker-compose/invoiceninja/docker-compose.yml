@@ -3,7 +3,7 @@ version: '3.7'
 services: 
   db:
     container_name: db
-    image: mariadb:11.5.2
+    image: mariadb:11.7.2
     restart: always
     networks:
       - invoiceninja
@@ -12,7 +12,7 @@ services:
 
   invoiceninja:
     container_name: invoiceninja
-    image: invoiceninja/invoiceninja:5.10
+    image: invoiceninja/invoiceninja:5.11
     ports:
       - 7777:9000
     restart: always

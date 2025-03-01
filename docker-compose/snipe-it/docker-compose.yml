@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   snipe-it_db:
-    image: mariadb:11.5
+    image: mariadb:11.7
     container_name: snipe-it_db
     restart: always
     command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
