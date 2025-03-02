@@ -2,7 +2,7 @@
 
 ## About this Procedure
 
-This procedure details how to install Loki Promtail Grafana using dokker-compose.
+This procedure details how to install `Loki` `Promtail` and `Grafana` using `docker-compose`.
 
 Loki, Promtail, and Grafana provide an efficient stack for managing and visualizing logs. Loki is a log aggregation system designed for scalability and ease of use, similar to Prometheus but for logs. Promtail is an agent that collects logs from various sources (such as systemd journals or log files) and forwards them to Loki. Grafana is used to query and visualize these logs through an intuitive dashboard, enabling real-time monitoring and analysis. This combination offers a cost-effective, cloud-native solution for centralized log management without the need for complex indexing.
 
@@ -10,10 +10,13 @@ For Windows Standard Operating Environments (SOEs), Fluent Bit is particularly u
 
 For Linux SOEs, Promtail is the preferred agent, efficiently collecting system logs, application logs, and custom log files for transmission to Loki
 
+For Kubernetes and related container platform services (e.g. Openshift, RKE2), promtail is deployed as `DeemonSet` to collect and ship logs from kubernetes nodes. To avoid to collect a large set of logs, dedicated namespace can be monitored.
+
 Security around log shipment can be achieve by using TLS certificate with a trusted CA/SubCA.
 
-
 ### Set permission for promtail
+
+To allow permission to access to logs file, you can use the following commands below on Linux SOEs:
 
 ```bash
 usermod -a -G systemd-journal promtail
