@@ -1,1 +1,5 @@
+## Remove related vscode files
 docker-compose-renovate.code-workspace
+
+## Remove downloaded images
+download
