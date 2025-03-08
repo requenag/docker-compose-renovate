@@ -1,29 +1,21 @@
-networks:
-  loki:
-
 services:
+
   loki:
     image: grafana/loki:3.4
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
     networks:
-      - loki
-
-## Promtail agent deployed on the SOE - Do not use
-  #promtail:
-  #  image: grafana/promtail:3.4
-  #  #volumes:
-  #  #  - /var/log:/var/log
-  #  command: -config.file=/etc/promtail/config.yml
-  #  networks:
-  #    - loki
+      - grafana_loki
+    restart: unless-stopped
 
   grafana:
     environment:
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      #- GF_SECURITY_ADMIN_USER=admin
+      #- GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_FEATURE_TOGGLES_ENABLE=alertingSimplifiedRouting,alertingQueryAndExpressionsStepMode
     entrypoint:
       - sh
@@ -35,7 +27,7 @@ services:
         datasources:
         - name: Loki
           type: loki
-          access: proxy 
+          access: proxy
           orgId: 1
           url: http://loki:3100
           basicAuth: false
@@ -48,4 +40,18 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - loki
+      - grafana_loki
+    restart: unless-stopped
+
+## Promtail Agent is deployed directly on the SOE - DO-NOT-USE
+#  promtail:
+#    image: grafana/promtail:3.4
+#    volumes:
+#      - /var/log:/var/log
+#    command: -config.file=/etc/promtail/config.yml
+#    networks:
+#      - grafana_loki
+#    restart: unless-stopped
+
+networks:
+  grafana_loki:

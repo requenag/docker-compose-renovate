@@ -3,3 +3,6 @@ docker-compose-renovate.code-workspace
 
 ## Remove downloaded images
 download
+
+## Remove specific projects
+docker-compose/grafana-loki-prometheus/*

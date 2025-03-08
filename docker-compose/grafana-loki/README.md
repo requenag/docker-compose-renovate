@@ -12,21 +12,21 @@ For Linux SOEs, Promtail is the preferred agent, efficiently collecting system l
 
 For Kubernetes and related container platform services (e.g. Openshift, RKE2), promtail is deployed as `DeemonSet` to collect and ship logs from kubernetes nodes. To avoid to collect a large set of logs, dedicated namespace can be monitored.
 
-Security around log shipment can be achieve by using TLS certificate with a trusted CA/SubCA.
+Security around logs shipment can be achieve by using TLS certificate with a trusted CA/SubCA and authentication at Grafana/Loki interface level. (to be implemented)
 
 ### Set permission for promtail
 
 To allow permission to access to logs file, you can use the following commands below on Linux SOEs:
 
 ```bash
-usermod -a -G systemd-journal promtail
-usermod -a -G adm promtail
-sudo setfacl -R -m u:promtail:rX /var/log/
-sudo setfacl -R -m u:promtail:rX /var/log/*
-sudo setfacl -R -m u:promtail:rX /var/log/audit/
-sudo setfacl -R -m u:promtail:rX /var/log/audit/*
-chown promtail:promtail /tmp/positions.yaml
-systemctl restart promtail
+systemctl stop promtail
+sudo adduser --system promtail
+sudo usermod -a -G systemd-journal promtail
+cd /var
+sudo chown promtail:promtail /tmp/positions.yaml
+sudo setfacl -R -m u:promtail:rX log
+sudo setfacl -R -m d:u:promtail:rX log
+systemctl enable promtail --now
 ```
 
 ## Reference
