@@ -2,7 +2,7 @@
 version: '2'
 services:
   keycloak_db:
-    image: docker.io/bitnami/postgresql:16.6.0
+    image: docker.io/bitnami/postgresql:17.4.0
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - POSTGRESQL_USERNAME=bn_keycloak
