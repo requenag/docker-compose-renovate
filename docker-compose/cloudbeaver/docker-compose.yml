@@ -5,7 +5,7 @@ version: "3.8"
 
 services:
   cloudbeaver:
-      image: dbeaver/cloudbeaver:24.3.5
+      image: dbeaver/cloudbeaver:25.0.1
       container_name: cloudbeaver
       restart: always
       ports:
