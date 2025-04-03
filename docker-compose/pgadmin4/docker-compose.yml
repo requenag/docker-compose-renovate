@@ -1,7 +1,7 @@
 services:
   pgadmin:
     container_name: pgadmin4
-    image: dpage/pgadmin4:9.1.0
+    image: dpage/pgadmin4:9.2.0
     #environment:
     #  - PGADMIN_DEFAULT_EMAIL=${PGADMIN_MAIL}
     #  - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PW}
