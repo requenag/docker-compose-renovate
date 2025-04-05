@@ -55,7 +55,7 @@ services:
       - "redis-server --appendonly yes --requirepass $$NAUTOBOT_REDIS_PASSWORD"  ## $$ because of docker-compose
     restart: "unless-stopped"
   db:
-    image: "postgres:16"
+    image: "postgres:17"
     # Apple Silicon has issues with Postgres14, there is no needed functions to get to Postgres14 for Nautobot to work.
     env_file:
       - "local.env"

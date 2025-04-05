@@ -16,7 +16,7 @@ services:
       - USER=odoo
       - PASSWORD=myodoo
   mydb:
-    image: postgres:15
+    image: postgres:17
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=myodoo
