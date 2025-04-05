@@ -2,7 +2,7 @@ version: '2'
 
 services:
   odoo:
-    image: odoo:17.0
+    image: odoo:18.0
     depends_on:
       - mydb
     ports:
@@ -16,7 +16,7 @@ services:
       - USER=odoo
       - PASSWORD=myodoo
   mydb:
-    image: postgres:15
+    image: postgres:17
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=myodoo
