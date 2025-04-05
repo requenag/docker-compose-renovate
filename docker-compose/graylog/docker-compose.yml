@@ -34,7 +34,7 @@ services:
 
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
-    image: graylog/graylog:5.2
+    image: graylog/graylog:6.1
     environment:
     - GRAYLOG_NODE_ID_FILE=/usr/share/graylog/data/config/node-id
     - GRAYLOG_HTTP_BIND_ADDRESS=0.0.0.0:9000
