@@ -1,9 +1,13 @@
 {
-  "extends": [
-    "config:base"
+  "extends": ["config:base"],
+  "automerge": true,
+  "automergeType": "branch",
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "automergeType": "branch"
+    }
   ],
-  "minor": { "automerge": true },
-  "patch": { "automerge": true },
-  "requiredStatusChecks": null,
-  "prHourlyLimit": 0
+  "dependencyDashboard": false
 }
