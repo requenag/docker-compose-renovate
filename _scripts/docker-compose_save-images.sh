@@ -1,7 +1,9 @@
 #!/bin/bash
 
 ## Author: Guillaume Requena <guillaume@requena.fr>
-## Date: 05-Mar-25 - Baseline script
+## Version: 2025-03-05 - Baseline script
+## Description: Script to download all the image referenced into this git repository.
+
 
 ## Main ##
 
