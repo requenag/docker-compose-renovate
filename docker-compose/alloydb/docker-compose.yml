@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   alloydb:
-    image: google/alloydbomni:15.7.0
+    image: google/alloydbomni:15.7.1
     environment:
       - POSTGRES_USER=${ALLOYDB_USER}
       - POSTGRES_PASSWORD=${ALLOYDB_PASSWORD}
