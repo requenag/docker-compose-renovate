@@ -1,15 +1,15 @@
 ---
-version: '3.3'
 services:
   uptime-kuma:
     image: louislam/uptime-kuma:1.23.16-alpine
     container_name: uptime-kuma
     security_opt:
      - no-new-privileges:true
-    env_file:  #only necessary if you want to change the password, see .env file
-      - .env
+    #env_file:  #only necessary if you want to change the password, see .env file
+    #  - .env
     volumes:
       - ./uptime-kuma_data/data:/app/data
     #ports:
     #  - 3001:3001  # <Host Port>:<Container Port>
     restart: always
+...
