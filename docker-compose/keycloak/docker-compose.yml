@@ -1,30 +1,68 @@
----
-version: '2'
 services:
   keycloak_db:
-    image: docker.io/bitnami/postgresql:17.4.0
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-      - POSTGRESQL_USERNAME=bn_keycloak
-      - POSTGRESQL_DATABASE=bitnami_keycloak
+    image: postgres:15.6
+    container_name: keycloak_db
     volumes:
-      - postgresql_data:/bitnami/postgresql'
-    restart: unless-stopped
-    networks:
-      - internal
-
-  keycloak_app:
-    image: docker.io/bitnami/keycloak:26.2.0
-    #ports:
-    #  - "80:8080"
+      - postgres_data:/var/lib/postgresql/data
     environment:
-      - KEYCLOAK_CREATE_ADMIN_USER=true
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+    restart: unless-stopped
+
+
+  keycloak_web:
+    image: quay.io/keycloak/keycloak:24.0.3
+    container_name: keycloak_web
+    environment:
+      KC_PROXY: edge
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://keycloak_db:5432/keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: password
+
+      KC_HOSTNAME: auth.example.com
+      #KC_HOSTNAME_STRICT: false
+      #KC_HOSTNAME_STRICT_HTTPS: false
+
+      KC_LOG_LEVEL: info
+      KC_METRICS_ENABLED: true
+      KC_HEALTH_ENABLED: true
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command: start-dev
     depends_on:
       - keycloak_db
-    volumes:
-      - ./keycloak_data/keycloak/themes/mynewtheme:/opt/bitnami/keycloak/themes/mynewtheme'
+    ports:
+      - 8080:8080
     restart: unless-stopped
 
+
+  oauth2_proxy:
+    image: quay.io/oauth2-proxy/oauth2-proxy:latest
+    container_name: oauth2_proxy
+    volumes:
+      - ./etc/ssl/certs/ca.cert.pem:/etc/ssl/certs/ca.cert
+    environment:
+      OAUTH2_PROXY_PROVIDER: oidc
+      OAUTH2_PROXY_OIDC_ISSUER_URL: https://auth.example.com/realms/dmz
+      OAUTH2_PROXY_CLIENT_ID: webapps-client
+      OAUTH2_PROXY_CLIENT_SECRET: <client_secret>
+      OAUTH2_PROXY_COOKIE_SECRET: <cookie_secret>
+      OAUTH2_PROXY_EMAIL_DOMAINS: "*"
+      OAUTH2_PROXY_COOKIE_NAME: _oauth2_proxy
+      OAUTH2_PROXY_COOKIE_DOMAIN: .example.com  # Important for cross-domain SSO
+      OAUTH2_PROXY_UPSTREAMS: "http://web:80"
+      OAUTH2_PROXY_WHITELIST_DOMAINS: .example.com
+      OAUTH2_PROXY_HTTP_ADDRESS: 0.0.0.0:4180
+      OAUTH2_PROXY_REDIRECT_URL: https://web.example.com/oauth2/callback
+      OAUTH2_PROXY_SKIP_PROVIDER_BUTTON: true
+      #OAUTH2_PROXY_SKIP_PROVIDER_TLS_VERIFY: true   # <- skip certificate verification
+      OAUTH2_PROXY_CUSTOM_CA: /etc/ssl/certs/ca.cert
+    #ports:
+    #  - "4180:4180"
+    restart: unless-stopped
+
+
 volumes:
-  postgresql_data:
-    driver: local
+  postgres_data:
