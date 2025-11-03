@@ -1,7 +1,6 @@
----
 services:
   n8n:
-    image: n8nio/n8n:1.91.3
+    image: n8nio/n8n:1.118.1
     restart: always
     ports:
       - "5678:5678"
@@ -9,7 +8,7 @@ services:
       - N8N_HOST=${N8N_HOST:-localhost}
       - N8N_PORT=5678
       - N8N_PROTOCOL=${N8N_PROTOCOL:-http}
-      # Configure database PostgreSQL 
+      # Configure database PostgreSQL
       - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=postgres
       - DB_POSTGRESDB_PORT=5432
@@ -21,7 +20,7 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
     networks:
-      - n8n-network
+      - internal
     depends_on:
       - postgres
       - redis
@@ -38,7 +37,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - n8n-network
+      - internal
     healthcheck:
       test: pg_isready -h localhost -U postgres -d n8n
       interval: 10s
@@ -51,7 +50,7 @@ services:
     volumes:
       - redis_data:/data
     networks:
-      - n8n-network
+      - internal
     healthcheck:
       test: redis-cli ping
       interval: 10s
@@ -64,5 +63,4 @@ volumes:
   redis_data:
 
 networks:
-  n8n-network:
-...
+  internal:
