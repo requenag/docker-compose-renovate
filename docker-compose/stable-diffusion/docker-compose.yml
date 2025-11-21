@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  stable-diffusion:
+    image: runpod/stable-diffusion:latest
+    ports:
+      - "7860:7860"  # Access the UI through port 7860
+    volumes:
+      - ./sd_data:/sd_data  # Mount a local folder to store models, VAE, etc.
+      - /path/to/your/data:/sd_data  # Uncomment and replace with your actual data folder path
+    restart: unless-stopped
+    environment:
+      - AUTOMATIC1111_HOST=0.0.0.0
+    shm_size: '8G' # Needed for stability, increase if you have issues
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    runtime: nvidia
