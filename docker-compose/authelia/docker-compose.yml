@@ -2,7 +2,7 @@
 version: '3.3'
 services:
   authelia:
-   image: authelia/authelia:4.39.1
+   image: authelia/authelia:4.39.15
    volumes:
       - ./authelia_data/config:/config
    ports:
