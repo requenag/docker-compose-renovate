@@ -1,0 +1,27 @@
+services:
+  vector:
+    image: timberio/vector:0.53.0-alpine
+    container_name: vector-aggregator
+    restart: unless-stopped
+
+    ports:
+      - "6514:6514" # Syslog TLS
+      - "5044:5044" # Vector agent TLS
+      - "9598:9598" # Optional metrics endpoint
+
+    volumes:
+      - ./vector.yaml:/etc/vector/vector.yaml:ro
+      - ./certs:/certs:ro
+      - vector_data:/var/lib/vector
+
+    environment:
+      - VECTOR_LOG=info
+
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:9598/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  vector_data:
