@@ -1,0 +1,39 @@
+# =========================
+# SOURCES
+# =========================
+sources:
+  syslog_tls:
+    type: syslog
+    address: 0.0.0.0:6514
+    mode: tcp
+    tls:
+      enabled: true
+      cert_file: /certs/server.crt
+      key_file: /certs/server.key
+
+  vector_agents:
+    type: vector
+    address: 0.0.0.0:5044
+    tls:
+      enabled: true
+      cert_file: /certs/server.crt
+      key_file: /certs/server.key
+
+# =========================
+# SINKS
+# =========================
+sinks:
+  console:
+    type: console
+    inputs:
+      - syslog_tls
+      - vector_agents
+    encoding:
+      codec: json
+
+# =========================
+# INTERNAL METRICS
+# =========================
+api:
+  enabled: true
+  address: 0.0.0.0:9598
