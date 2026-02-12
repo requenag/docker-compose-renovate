@@ -1,6 +1,6 @@
 services:
   web:
-    image: nginx:1.28.2-alpine-slim
+    image: nginx:1.29.5-alpine-slim
     volumes:
       #- /var/www/html:/var/www/html:z,ro
       - /var/www/html:/usr/share/nginx/html:z,ro
