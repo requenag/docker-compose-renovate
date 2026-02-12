@@ -1,12 +1,15 @@
 {
   "extends": ["config:base"],
+  "baseBranches": ["main"],
   "automerge": true,
-  "automergeType": "branch",
+  "automergeType": "pr",
+  "platformAutomerge": true,
   "packageRules": [
     {
       "matchDatasources": ["docker"],
       "automerge": true,
-      "automergeType": "branch"
+      "automergeType": "pr",
+      "platformAutomerge": true
     }
   ],
   "dependencyDashboard": false
