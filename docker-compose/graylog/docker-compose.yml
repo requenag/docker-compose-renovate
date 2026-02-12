@@ -2,7 +2,7 @@ version: '3'
 services:
 # MongoDB: https://hub.docker.com/_/mongo/
   mongodb:
-    image: mongo:8.0.6
+    image: mongo:8.2.5
     volumes:
       - "./mongodb_data:/data/db"
     restart: "on-failure"
