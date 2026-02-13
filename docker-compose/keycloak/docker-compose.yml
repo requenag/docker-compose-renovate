@@ -12,7 +12,7 @@ services:
 
 
   keycloak_web:
-    image: quay.io/keycloak/keycloak:24.0.3
+    image: quay.io/keycloak/keycloak:24.0.5
     container_name: keycloak_web
     environment:
       KC_PROXY: edge
