@@ -8,7 +8,7 @@ sources:
     mode: tcp
     tls:
       enabled: true
-      cert_file: /certs/server.crt
+      crt_file: /certs/server.crt
       key_file: /certs/server.key
 
   vector_agents:
@@ -16,7 +16,7 @@ sources:
     address: 0.0.0.0:5044
     tls:
       enabled: true
-      cert_file: /certs/server.crt
+      crt_file: /certs/server.crt
       key_file: /certs/server.key
 
 # =========================
