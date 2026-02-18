@@ -1,7 +1,7 @@
 version: '3'
 services:
   opensearch-node1: # This is also the hostname of the container within the Docker network (i.e. https://opensearch-node1/)
-    image: opensearchproject/opensearch:2.19.1 # Specifying the latest available image - modify if you want a specific version
+    image: opensearchproject/opensearch:2.19.4 # Specifying the latest available image - modify if you want a specific version
     container_name: opensearch-node1
     environment:
       - cluster.name=opensearch-cluster # Name the cluster
