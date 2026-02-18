@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   netbootxyz:
-    image: netbootxyz/netbootxyz:0.7.5-nbxyz2
+    image: netbootxyz/netbootxyz:0.7.6-nbxyz2
     container_name: netbootxyz
     environment:
       - PUID=${PUID}
