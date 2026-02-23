@@ -2,7 +2,7 @@ version: '3.6'
 services:
   checkmk:
     container_name: checkmk
-    image: checkmk/check-mk-raw:2.3.0
+    image: checkmk/check-mk-raw:2.4.0
     tmpfs:
       - /opt/omd/sites/cmk/tmp:uid=1000,gid=1000
     ulimits:
