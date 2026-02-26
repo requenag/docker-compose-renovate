@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   vault:
-    image: hashicorp/vault:1.19
+    image: hashicorp/vault:1.21
     container_name: vault
     restart: on-failure:10
     ports:
