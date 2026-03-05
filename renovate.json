@@ -18,7 +18,7 @@
   ],
 
   "autoApprove": true,
-  "dependencyDashboard": false
+  "dependencyDashboard": false,
 
   "hostRules": [
     {
@@ -27,4 +27,5 @@
       "username": "{{ secrets.DOCKERHUB_USERNAME }}",
       "password": "{{ secrets.DOCKERHUB_TOKEN }}"
     }
+  ]
 }
