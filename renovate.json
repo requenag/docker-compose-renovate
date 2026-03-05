@@ -18,7 +18,7 @@
   ],
 
   "autoApprove": true,
-  "dependencyDashboard": false,
+  "dependencyDashboard": true,
 
   "hostRules": [
     {
