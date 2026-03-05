@@ -1,7 +1,7 @@
 version: "2.1"
 services:
   zeek:
-    image: zeek/zeek:7.1
+    image: zeek/zeek:7.2
     container_name: zeek
     security_opt:
      - no-new-privileges:true
