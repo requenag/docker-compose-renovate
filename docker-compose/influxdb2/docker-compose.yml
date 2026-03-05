@@ -1,7 +1,7 @@
 version: '3'
 services:
   influxdb:
-    image: influxdb:2.7-alpine
+    image: influxdb:2.8-alpine
     container_name: influxdb2
     #environment:
       #- DOCKER_INFLUXDB_INIT_MODE=setup
