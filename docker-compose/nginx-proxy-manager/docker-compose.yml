@@ -1,6 +1,6 @@
 services:
   ngnix-reverse-proxy:
-    image: jlesage/nginx-proxy-manager:v25.06.1
+    image: jlesage/nginx-proxy-manager:v25.09.1
     container_name: nginx-proxy-manager
     restart: unless-stopped
     ports:
