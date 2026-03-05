@@ -22,7 +22,7 @@ services:
         depends_on:
             - db
     db:
-        image: postgres:17
+        image: postgres:18
         restart: always
         environment:
             - POSTGRES_DB=speedtest_tracker

@@ -1,6 +1,6 @@
 services:
   keycloak_db:
-    image: postgres:15.6
+    image: postgres:18.3
     container_name: keycloak_db
     volumes:
       - postgres_data:/var/lib/postgresql/data

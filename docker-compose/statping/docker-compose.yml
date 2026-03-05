@@ -44,7 +44,7 @@ services:
 
   postgres:
     container_name: postgres
-    image: postgres:17
+    image: postgres:18
     restart: always
     networks:
       - database
