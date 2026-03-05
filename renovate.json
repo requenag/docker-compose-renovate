@@ -19,4 +19,12 @@
 
   "autoApprove": true,
   "dependencyDashboard": false
+
+  "hostRules": [
+    {
+      "matchHost": "docker.io",
+      "hostType": "docker",
+      "username": "{{ secrets.DOCKERHUB_USERNAME }}",
+      "password": "{{ secrets.DOCKERHUB_TOKEN }}"
+    }
 }
