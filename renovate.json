@@ -1,6 +1,8 @@
 {
-  "extends": ["config:base"],
-  "baseBranches": ["main"],
+  "extends": ["config:recommended"],
+  "baseBranchPatterns": [
+    "main"
+  ],
 
   "automerge": true,
   "automergeType": "pr",
