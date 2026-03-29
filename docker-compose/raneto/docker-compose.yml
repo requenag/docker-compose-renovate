@@ -1,7 +1,7 @@
 version: "2.1"
 services:
   raneto:
-    image: lscr.io/linuxserver/raneto:0.17.8
+    image: lscr.io/linuxserver/raneto:0.18.1
     container_name: raneto
     environment:
       - PUID=1000
