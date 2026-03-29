@@ -1,7 +1,7 @@
 ---
 services:
   beets:
-    image: lscr.io/linuxserver/beets:2.2.0
+    image: lscr.io/linuxserver/beets:2.8.0
     container_name: beets
     environment:
       - PUID=1000
