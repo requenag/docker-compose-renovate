@@ -2,7 +2,7 @@
 
 services:
   jenkins:
-    image: jenkins/jenkins:2.541.2-lts
+    image: jenkins/jenkins:2.555.1-lts
     container_name: jenkins
     privileged: true
     user: root
