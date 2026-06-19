@@ -1,0 +1,39 @@
+services:
+  openfire:
+    image: nasqueron/openfire:4.9.2
+    container_name: openfire-dmz
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    #ports:
+      #- "9090:9090" # Admin console HTTP
+      #- "9091:9091" # Admin console HTTPS
+      #- "5222:5222" # Main XMPP client connections
+      #- "5223:5223" # Legacy XMPP SSL client connections
+      #- "5269:5269" # XMPP server-to-server federation
+      #- "5275:5275" # External components
+      #- "5276:5276" # External components over TLS
+      #- "7070:7070" # HTTP BOSH / WebSocket / web XMPP services
+      #- "7443:7443" # HTTPS BOSH / WebSocket / web XMPP services
+    volumes:
+      - openfire_data:/var/lib/openfire
+      - openfire_logs:/var/log/openfire
+      - openfire_plugins:/usr/share/openfire/plugins
+
+  postgres:
+    image: postgres:16.14-alpine3.23
+    container_name: openfire-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: openfire
+      POSTGRES_USER: openfire
+      POSTGRES_PASSWORD: ThisIsAnInsecureP@assword!
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  openfire_data:
+  openfire_logs:
+  openfire_plugins:
+  postgres_data:
+
