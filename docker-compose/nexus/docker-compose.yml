@@ -1,6 +1,6 @@
 services:
   nexus:
-    image: sonatype/nexus3:latest
+    image: sonatype/nexus3:3.90.4-alpine
     container_name: nexus
     hostname: nexus
     restart: unless-stopped
