@@ -20,7 +20,7 @@ services:
 
     volumes:
       # Persistent Nexus data
-      - /data/nexus/sonatype-work:/nexus-data
+      - /data/nexus/sonatype-work:/sonatype-work
 
     environment:
       # Lab-friendly JVM sizing for an 8 GB RAM VM.
