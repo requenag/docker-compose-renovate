@@ -1,0 +1,52 @@
+services:
+  nexus:
+    image: sonatype/nexus3:latest
+    container_name: nexus
+    hostname: nexus
+    restart: unless-stopped
+
+    ports:
+      # Nexus Web UI and REST API
+      - "8081:8081"
+
+      # Optional Docker repository connector ports
+      # Enable these only if you create Docker repositories in Nexus.
+      # docker-hosted
+      - "8082:8082"
+      # docker-proxy
+      - "8083:8083"
+      # docker-group
+      - "8084:8084"
+
+    volumes:
+      # Persistent Nexus data
+      - /data/nexus/sonatype-work:/nexus-data
+
+    environment:
+      # Lab-friendly JVM sizing for an 8 GB RAM VM.
+      # Adjust if your VM is smaller or larger.
+      INSTALL4J_ADD_VM_PARAMS: >-
+        -Xms1200m
+        -Xmx1200m
+        -XX:MaxDirectMemorySize=2g
+        -Djava.util.prefs.userRoot=/nexus-data/javaprefs
+
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/service/rest/v1/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 180s
+
+    networks:
+      - nexus_net
+
+networks:
+  nexus_net:
+    name: nexus_net
+    driver: bridge
