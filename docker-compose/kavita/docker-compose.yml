@@ -1,7 +1,7 @@
 ---
 services:
   kavita:
-    image: lscr.io/linuxserver/kavita:0.8.9
+    image: lscr.io/linuxserver/kavita:0.9.1
     container_name: kavita
     environment:
       - PUID=1000
