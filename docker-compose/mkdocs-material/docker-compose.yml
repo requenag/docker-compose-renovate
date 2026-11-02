@@ -3,7 +3,7 @@
 services:
   mkdocs:
     container_name: mkdocs
-    image: squidfunk/mkdocs-material:9.6
+    image: squidfunk/mkdocs-material:9.8
     #ports:
     #  - "8000:8000"
     volumes:
