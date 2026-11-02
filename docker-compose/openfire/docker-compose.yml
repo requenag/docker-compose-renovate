@@ -21,7 +21,7 @@ services:
       - openfire_plugins:/usr/share/openfire/plugins
 
   postgres:
-    image: postgres:16.14-alpine3.23
+    image: postgres:16.15-alpine3.23
     container_name: openfire-postgres
     restart: unless-stopped
     environment:
