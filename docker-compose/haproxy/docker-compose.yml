@@ -2,7 +2,7 @@
 
 services:
   haproxy:
-    image: haproxy:3.3.6
+    image: haproxy:3.4.7
     container_name: haproxy
     ports:
       - "80:80"
